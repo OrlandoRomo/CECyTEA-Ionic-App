@@ -1,0 +1,48 @@
+<!-- -->
+<ion-content padding class="animated fadeIn login auth-page">
+    <div class="login-content">
+
+        <!-- Logo -->
+        <div padding-horizontal text-center class="animated fadeInDown">
+            <div class="logo"></div>
+            <h2 ion-text color="cecytea-font">
+                <strong>CECyTEA</strong> Simulación de Tests
+            </h2>
+        </div>
+
+        <!-- Login form -->
+        <form class="list-form" [formGroup]="studentForm">
+            <ion-item>
+                <ion-label>
+                    <ion-icon name="mail" item-start class="primary"></ion-icon>
+
+                </ion-label>
+                <ion-input placeholder="Correo electrónico" type="email" formControlName="email"></ion-input>
+
+            </ion-item>
+            <ion-label class="text-md-danger animated fadeInDown" *ngIf="studentForm.get('email').errors?.required && studentForm.get('email').touched ">
+                El correo es requerido.
+            </ion-label>
+            <ion-item>
+                <ion-label>
+                    <ion-icon name="lock" item-start class="primary"></ion-icon>
+
+                </ion-label>
+                <ion-input placeholder="Contraseña" type="password" formControlName="password"></ion-input>
+            </ion-item>
+            <ion-label class="text-md-danger animated fadeInDown" *ngIf="studentForm.get('password').errors?.required && studentForm.get('password').touched ">
+                La contraseña es requerido.
+            </ion-label>
+        </form>
+        <div>
+            <button color="cecytea-font" [disabled]="!studentForm.valid" ion-button icon-start block tappable (click)="login()">
+        <ion-icon name="log-in"></ion-icon>
+        INICIAR SESIÓN
+      </button>
+        </div>
+
+        <div text-center margin-top>
+            <span ion-text color="secondary" (click)="register()">¿Eres nuevo? <strong class="text-cecytea-font">Registrate aquí</strong></span>
+        </div>
+    </div>
+</ion-content>

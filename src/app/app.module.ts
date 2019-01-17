@@ -1,30 +1,55 @@
-import { BrowserModule } from '@angular/platform-browser';
-import { ErrorHandler, NgModule } from '@angular/core';
-import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
-import { SplashScreen } from '@ionic-native/splash-screen';
-import { StatusBar } from '@ionic-native/status-bar';
+import {NgModule} from "@angular/core";
+import {IonicApp, IonicModule} from "ionic-angular";
+import {BrowserModule} from '@angular/platform-browser';
+import {HttpClientModule} from '@angular/common/http';
+import {ReactiveFormsModule} from '@angular/forms';
+//Plugins
+import {StatusBar} from '@ionic-native/status-bar';
+import {SplashScreen} from '@ionic-native/splash-screen';
+import {IonicStorageModule} from '@ionic/storage';
 
-import { MyApp } from './app.component';
-import { HomePage } from '../pages/home/home';
+//Pages
+import {MyApp} from "./app.component";
+
+import {RegisterPage} from "../pages/register/register";
+import { LoginPage } from '../pages/login/login';
+
+//Services
+import { ServicesApiProvider } from '../providers/services-api/services-api';
+import { ServicesNetworkProvider } from '../providers/services-network/services-network';
+import { ServicesOfflineManagerProvider } from '../providers/services-offline-manager/services-offline-manager';
 
 @NgModule({
   declarations: [
     MyApp,
-    HomePage
+    LoginPage,
+    RegisterPage,
   ],
   imports: [
     BrowserModule,
-    IonicModule.forRoot(MyApp)
+    HttpClientModule,
+    ReactiveFormsModule,
+    IonicModule.forRoot(MyApp, {
+      scrollPadding: false,
+      scrollAssist: true,
+      autoFocusAssist: false
+    }),
+    IonicStorageModule.forRoot()
   ],
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
-    HomePage
+    LoginPage,
+    RegisterPage,
   ],
   providers: [
     StatusBar,
     SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    ServicesApiProvider,
+    ServicesNetworkProvider,
+    ServicesOfflineManagerProvider,
   ]
 })
-export class AppModule {}
+
+export class AppModule {
+}

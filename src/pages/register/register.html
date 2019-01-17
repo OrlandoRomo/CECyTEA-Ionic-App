@@ -1,0 +1,90 @@
+<!-- -->
+<ion-content class="auth-page animated fadeIn">
+    <div class="login-content">
+
+        <!-- Logo -->
+        <div padding text-center class="animated fadeInDown">
+            <div class="logo"></div>
+            <h2 ion-text color="cecytea-font">
+                <strong>Registro</strong> de estudiantes
+            </h2>
+        </div>
+        <form class="list-form" [formGroup]="newStudentForm">
+            <ion-list>
+                <ion-item>
+                    <ion-label>
+                        <ion-icon name="person" item-start class="primary"></ion-icon>
+                    </ion-label>
+                    <ion-input placeholder="Nombre" formControlName="name" type="text"></ion-input>
+                </ion-item>
+                <ion-label class="text-md-danger animated fadeInDown" *ngIf="newStudentForm.get('name').errors?.required && newStudentForm.get('name').touched ">
+                    El nombre es requerido.
+                </ion-label>
+                <ion-item>
+                    <ion-label>
+                        <ion-icon name="person" item-start class="primary"></ion-icon>
+                    </ion-label>
+                    <ion-input placeholder="Apellidos" formControlName="lastName" type="text"></ion-input>
+                </ion-item>
+                <ion-label class="text-md-danger animated fadeInDown" *ngIf="newStudentForm.get('lastName').errors?.required && newStudentForm.get('lastName').touched ">
+                    Los apellidos son requeridos.
+                </ion-label>
+                <ion-item>
+                    <ion-label>
+                        <ion-icon name="mail" item-start class="primary"></ion-icon>
+                    </ion-label>
+                    <ion-input placeholder="Correco electrónico" formControlName="email" type="email"></ion-input>
+                </ion-item>
+                <ion-label class="text-md-danger animated fadeInDown" *ngIf="newStudentForm.get('email').errors?.required && newStudentForm.get('email').touched ">
+                    El correo es requerido requerido.
+                </ion-label>
+                <ion-item>
+                    <ion-label>
+                        <ion-icon name="lock" item-start class="primary"></ion-icon>
+                    </ion-label>
+                    <ion-input placeholder="Contraseña" formControlName="password" type="password"></ion-input>
+                </ion-item>
+                <ion-label class="text-md-danger animated fadeInDown" *ngIf="newStudentForm.get('password').errors?.required && newStudentForm.get('password').touched ">
+                    La contraseña es requerida.
+                </ion-label>
+                <ion-grid>
+                    <ion-row>
+                        <ion-col col-6>
+                            <ion-item>
+                                <ion-label>
+                                    <ion-icon name="list" item-start class="primary"></ion-icon>
+                                    Grado
+                                </ion-label>
+                                <ion-select formControlName="grade">
+                                    <ion-option *ngFor="let grade of gradeList" [value]="grade">{{grade}}</ion-option>
+                                </ion-select>
+                            </ion-item>
+                        </ion-col>
+                        <ion-col col-6>
+                            <ion-item>
+                                <ion-label>
+                                    <ion-icon name="people" item-start class="primary"></ion-icon>
+                                    Grupo
+                                </ion-label>
+                                <ion-select formControlName="group">
+                                    <ion-option *ngFor="let group of groupList" [value]="group">{{group}}</ion-option>
+                                </ion-select>
+                            </ion-item>
+                        </ion-col>
+                    </ion-row>
+
+                </ion-grid>
+
+            </ion-list>
+        </form>
+
+        <div margin-top>
+            <button [disabled]="!newStudentForm.valid" ion-button small block color="cecytea-font" tappable (click)="register()">
+        Registrarse
+      </button>
+        </div>
+        <div text-center margin-top>
+            <span ion-text color="cecytea-font" tappable (click)="login()">Ya tengo una cuenta</span>
+        </div>
+    </div>
+</ion-content>
