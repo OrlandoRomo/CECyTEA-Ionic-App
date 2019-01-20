@@ -11,7 +11,7 @@
         </div>
 
         <!-- Login form -->
-        <form class="list-form" [formGroup]="studentForm">
+        <form class="list-form" [formGroup]="studentForm" (ngSubmit)="signIn()">
             <ion-item>
                 <ion-label>
                     <ion-icon name="mail" item-start class="primary"></ion-icon>
@@ -33,13 +33,14 @@
             <ion-label class="text-md-danger animated fadeInDown" *ngIf="studentForm.get('password').errors?.required && studentForm.get('password').touched ">
                 La contraseña es requerido.
             </ion-label>
+            <div>
+                <button color="cecytea-font" type="submit" [disabled]="!studentForm.valid" ion-button icon-start block tappable>
+            <ion-icon name="log-in"></ion-icon>
+            INICIAR SESIÓN
+          </button>
+            </div>
         </form>
-        <div>
-            <button color="cecytea-font" [disabled]="!studentForm.valid" ion-button icon-start block tappable (click)="login()">
-        <ion-icon name="log-in"></ion-icon>
-        INICIAR SESIÓN
-      </button>
-        </div>
+
 
         <div text-center margin-top>
             <span ion-text color="secondary" (click)="register()">¿Eres nuevo? <strong class="text-cecytea-font">Registrate aquí</strong></span>

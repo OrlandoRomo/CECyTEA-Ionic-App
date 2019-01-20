@@ -1,29 +1,34 @@
-import {NgModule} from "@angular/core";
-import {IonicApp, IonicModule} from "ionic-angular";
-import {BrowserModule} from '@angular/platform-browser';
-import {HttpClientModule} from '@angular/common/http';
-import {ReactiveFormsModule} from '@angular/forms';
+import { NgModule } from "@angular/core";
+import { IonicApp, IonicModule } from "ionic-angular";
+import { BrowserModule } from '@angular/platform-browser';
+import { HttpClientModule } from '@angular/common/http';
+import { ReactiveFormsModule } from '@angular/forms';
+
 //Plugins
-import {StatusBar} from '@ionic-native/status-bar';
-import {SplashScreen} from '@ionic-native/splash-screen';
-import {IonicStorageModule} from '@ionic/storage';
+import { StatusBar } from '@ionic-native/status-bar';
+import { SplashScreen } from '@ionic-native/splash-screen';
+import { IonicStorageModule } from '@ionic/storage';
+import { Network } from '@ionic-native/network';
 
 //Pages
-import {MyApp} from "./app.component";
-
-import {RegisterPage} from "../pages/register/register";
+import { MyApp } from "./app.component";
+import { HomePage } from '../pages/home/home';
+import { RegisterPage } from "../pages/register/register";
 import { LoginPage } from '../pages/login/login';
+import { MyInfoPage } from '../pages/my-info/my-info';
 
 //Services
-import { ServicesApiProvider } from '../providers/services-api/services-api';
 import { ServicesNetworkProvider } from '../providers/services-network/services-network';
-import { ServicesOfflineManagerProvider } from '../providers/services-offline-manager/services-offline-manager';
-
+import { ProvidersAuthProvider } from '../providers/providers-auth/providers-auth';
+import { ProvidersStudentProvider } from '../providers/providers-student/providers-student';
+import { ProvidersStorageProvider } from '../providers/providers-storage/providers-storage';
 @NgModule({
   declarations: [
     MyApp,
     LoginPage,
     RegisterPage,
+    HomePage,
+    MyInfoPage
   ],
   imports: [
     BrowserModule,
@@ -41,13 +46,17 @@ import { ServicesOfflineManagerProvider } from '../providers/services-offline-ma
     MyApp,
     LoginPage,
     RegisterPage,
+    HomePage,
+    MyInfoPage
   ],
   providers: [
     StatusBar,
     SplashScreen,
-    ServicesApiProvider,
+    Network,
     ServicesNetworkProvider,
-    ServicesOfflineManagerProvider,
+    ProvidersAuthProvider,
+    ProvidersStudentProvider,
+    ProvidersStorageProvider,
   ]
 })
 

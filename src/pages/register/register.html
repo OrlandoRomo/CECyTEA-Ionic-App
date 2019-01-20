@@ -17,36 +17,36 @@
                     </ion-label>
                     <ion-input placeholder="Nombre" formControlName="name" type="text"></ion-input>
                 </ion-item>
-                <ion-label class="text-md-danger animated fadeInDown" *ngIf="newStudentForm.get('name').errors?.required && newStudentForm.get('name').touched ">
+                <!-- <ion-label class="text-md-danger animated fadeInDown" *ngIf="newStudentForm.get('name').errors?.required && newStudentForm.get('name').touched ">
                     El nombre es requerido.
-                </ion-label>
+                </ion-label> -->
                 <ion-item>
                     <ion-label>
                         <ion-icon name="person" item-start class="primary"></ion-icon>
                     </ion-label>
                     <ion-input placeholder="Apellidos" formControlName="lastName" type="text"></ion-input>
                 </ion-item>
-                <ion-label class="text-md-danger animated fadeInDown" *ngIf="newStudentForm.get('lastName').errors?.required && newStudentForm.get('lastName').touched ">
+                <!-- <ion-label class="text-md-danger animated fadeInDown" *ngIf="newStudentForm.get('lastName').errors?.required && newStudentForm.get('lastName').touched ">
                     Los apellidos son requeridos.
-                </ion-label>
+                </ion-label> -->
                 <ion-item>
                     <ion-label>
                         <ion-icon name="mail" item-start class="primary"></ion-icon>
                     </ion-label>
                     <ion-input placeholder="Correco electrónico" formControlName="email" type="email"></ion-input>
                 </ion-item>
-                <ion-label class="text-md-danger animated fadeInDown" *ngIf="newStudentForm.get('email').errors?.required && newStudentForm.get('email').touched ">
+                <!-- <ion-label class="text-md-danger animated fadeInDown" *ngIf="newStudentForm.get('email').errors?.required && newStudentForm.get('email').touched ">
                     El correo es requerido requerido.
-                </ion-label>
+                </ion-label> -->
                 <ion-item>
                     <ion-label>
                         <ion-icon name="lock" item-start class="primary"></ion-icon>
                     </ion-label>
                     <ion-input placeholder="Contraseña" formControlName="password" type="password"></ion-input>
                 </ion-item>
-                <ion-label class="text-md-danger animated fadeInDown" *ngIf="newStudentForm.get('password').errors?.required && newStudentForm.get('password').touched ">
+                <!-- <ion-label class="text-md-danger animated fadeInDown" *ngIf="newStudentForm.get('password').errors?.required && newStudentForm.get('password').touched ">
                     La contraseña es requerida.
-                </ion-label>
+                </ion-label> -->
                 <ion-grid>
                     <ion-row>
                         <ion-col col-6>

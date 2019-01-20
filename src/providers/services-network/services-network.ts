@@ -1,18 +1,57 @@
 import { Injectable } from '@angular/core';
-import { Http } from '@angular/http';
-import 'rxjs/add/operator/map';
+import { Network } from '@ionic-native/network';
+import { BehaviorSubject, Observable } from 'rxjs';
+import { ToastController, Platform } from 'ionic-angular';
 
-/*
-  Generated class for the ServicesNetworkProvider provider.
-
-  See https://angular.io/guide/dependency-injection for more info on providers
-  and Angular DI.
-*/
+export enum ConnectionStatus {
+  Online,
+  Offline
+}
 @Injectable()
 export class ServicesNetworkProvider {
+  private status: BehaviorSubject<ConnectionStatus> = new BehaviorSubject(ConnectionStatus.Offline);
+  public isConnected: boolean = true;
+  constructor(private network: Network, private toastController: ToastController, private plt: Platform) {
+    this.plt.ready().then(() => {
+      this.initializeNetworkEvents();
+      let status = this.network.type !== 'none' ? ConnectionStatus.Online : ConnectionStatus.Offline;
+      this.status.next(status);
+    });
+  }
+  public initializeNetworkEvents() {
 
-  constructor(public http: Http) {
-    console.log('Hello ServicesNetworkProvider Provider');
+    this.network.onDisconnect().subscribe(() => {
+      if (this.status.getValue() === ConnectionStatus.Online) {
+        console.log('WE ARE OFFLINE');
+        this.updateNetworkStatus(ConnectionStatus.Offline);
+      }
+    });
+
+    this.network.onConnect().subscribe(() => {
+      if (this.status.getValue() === ConnectionStatus.Offline) {
+        console.log('WE ARE ONLINE');
+        this.updateNetworkStatus(ConnectionStatus.Online);
+      }
+    });
   }
 
+  private async updateNetworkStatus(status: ConnectionStatus) {
+    this.status.next(status);
+
+    let connection = status == ConnectionStatus.Offline ? 'Offline' : 'Online';
+    let toast = this.toastController.create({
+      message: `You are now ${connection}`,
+      duration: 3000,
+      position: 'bottom'
+    });
+    toast.present();
+  }
+
+  public onNetworkChange(): Observable<ConnectionStatus> {
+    return this.status.asObservable();
+  }
+
+  public getCurrentNetworkStatus(): ConnectionStatus {
+    return this.status.getValue();
+  }
 }
