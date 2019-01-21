@@ -16,7 +16,11 @@ import { HomePage } from '../pages/home/home';
 import { RegisterPage } from "../pages/register/register";
 import { LoginPage } from '../pages/login/login';
 import { MyInfoPage } from '../pages/my-info/my-info';
+import { TestsPage } from '../pages/tests/tests';
+import { ChartPage } from '../pages/chart/chart';
 
+//Chart js 
+import {ChartsModule} from 'ng2-charts';
 //Services
 import { ServicesNetworkProvider } from '../providers/services-network/services-network';
 import { ProvidersAuthProvider } from '../providers/providers-auth/providers-auth';
@@ -28,7 +32,9 @@ import { ProvidersStorageProvider } from '../providers/providers-storage/provide
     LoginPage,
     RegisterPage,
     HomePage,
-    MyInfoPage
+    MyInfoPage,
+    TestsPage,
+    ChartPage
   ],
   imports: [
     BrowserModule,
@@ -39,7 +45,8 @@ import { ProvidersStorageProvider } from '../providers/providers-storage/provide
       scrollAssist: true,
       autoFocusAssist: false
     }),
-    IonicStorageModule.forRoot()
+    IonicStorageModule.forRoot(),
+    ChartsModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -47,7 +54,9 @@ import { ProvidersStorageProvider } from '../providers/providers-storage/provide
     LoginPage,
     RegisterPage,
     HomePage,
-    MyInfoPage
+    MyInfoPage,
+    TestsPage,
+    ChartPage
   ],
   providers: [
     StatusBar,

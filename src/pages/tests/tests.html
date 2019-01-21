@@ -1,0 +1,35 @@
+<ion-header>
+    <ion-toolbar color="cecytea-font">
+        <ion-title>
+            Tests
+        </ion-title>
+        <ion-buttons start>
+            <button *ngIf="testsList.length!==0" (click)="deleteAllTests()" ion-button icon-only color="primary">
+        <ion-icon name="trash"></ion-icon>
+      </button>
+            <button ion-button (click)="dismiss()">
+        <span ion-text color="primary" showWhen="ios">Cancelar</span>
+        <ion-icon name="md-close" showWhen="android,windows"></ion-icon>
+      </button>
+        </ion-buttons>
+    </ion-toolbar>
+</ion-header>
+
+
+<ion-content padding>
+    <ion-list>
+        <ion-item-sliding *ngFor="let test of testsList;let i=index;" (click)="testDetails(test)">
+            <ion-item>
+                <ion-avatar item-start>
+                    <img src="assets/img/exam.png">
+                </ion-avatar>
+                <h2>Tests {{i+1}}</h2>
+            </ion-item>
+            <ion-item-options side="right">
+                <button ion-button (click)="deleteTest(test._id)" color="danger">
+          <ion-icon name="trash"></ion-icon>
+        </button>
+            </ion-item-options>
+        </ion-item-sliding>
+    </ion-list>
+</ion-content>

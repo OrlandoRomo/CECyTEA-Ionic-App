@@ -46,6 +46,7 @@ export class LoginPage {
         message: `${err}`,
         duration: 3000
       }).present();
+      this.studentForm.reset();
     });
   }
   register() {

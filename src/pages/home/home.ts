@@ -12,12 +12,4 @@ export class HomePage {
   constructor(public navCtrl: NavController, public navParams: NavParams, private _storage:ProvidersStorageProvider) {
 
   }
-
-  logOut(){
-    console.log('Se eliminó el token');
-    
-    // this._storage.deleteTokenStorage();
-    // this.navCtrl.setRoot(LoginPage);
-  }
-
 }

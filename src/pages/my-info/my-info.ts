@@ -1,25 +1,49 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams, ViewController, LoadingController, ToastController } from 'ionic-angular';
+import { ProvidersStudentProvider } from '../../providers/providers-student/providers-student';
+import { Student } from '../../interfaces/stundent';
 
-/**
- * Generated class for the MyInfoPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
 
-@IonicPage()
 @Component({
   selector: 'page-my-info',
   templateUrl: 'my-info.html',
 })
 export class MyInfoPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  public student: Student;
+  public testCount: number = 0;
+  constructor(
+    public navCtrl: NavController,
+    public navParams: NavParams,
+    private viewCtrl: ViewController,
+    private _serviceStudent: ProvidersStudentProvider,
+    private loadingCtrl:LoadingController,
+    private toastCtrl:ToastController
+  ) {
+    let loadingTests = this.loadingCtrl.create({
+      content:'Obteniendo tu información...'
+    });
+    loadingTests.present();
+    this._serviceStudent.getCountDocumentsTests().then((result)=>{
+      result.subscribe((tests)=>{
+        loadingTests.dismiss();
+        this.testCount = tests.count || 0;
+      },err=>{
+        loadingTests.dismiss();
+        this.toastCtrl.create({
+          message:err,
+          duration:3000
+        }).present();
+        this.navCtrl.pop();
+      })
+    })
+    this._serviceStudent.getStudentInformation().then((student) => {
+      this.student = student;
+    });
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad MyInfoPage');
+  dismiss() {
+    this.viewCtrl.dismiss();
   }
 
 }

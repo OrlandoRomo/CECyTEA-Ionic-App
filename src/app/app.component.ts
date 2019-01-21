@@ -6,6 +6,8 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { LoginPage } from "../pages/login/login";
 import { HomePage } from '../pages/home/home';
 import { ProvidersStorageProvider } from '../providers/providers-storage/providers-storage';
+import { MyInfoPage } from '../pages/my-info/my-info';
+import { TestsPage } from '../pages/tests/tests';
 
 export interface MenuItem {
     title: string;
@@ -52,5 +54,13 @@ export class MyApp {
     this._storage.deleteTokenStorage();
     this.menuCtrl.close();
     this.nav.setRoot(LoginPage);
+  }
+  myInfo(){
+    this.menuCtrl.close();
+    this.nav.push(MyInfoPage);
+  }
+  testsDone(){
+    this.menuCtrl.close();
+    this.nav.push(TestsPage);
   }
 }

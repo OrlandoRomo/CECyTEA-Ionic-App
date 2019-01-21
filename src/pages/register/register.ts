@@ -52,6 +52,7 @@ export class RegisterPage {
         duration: 3000,
         position:'bottom'
       }).present();
+      this.newStudentForm.reset();
     });
   }
 

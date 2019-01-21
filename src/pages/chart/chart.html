@@ -1,0 +1,57 @@
+<ion-header>
+    <ion-toolbar color="cecytea-font">
+        <ion-title>
+            Detalles
+        </ion-title>
+        <ion-buttons start>
+            <button ion-button (click)="dismiss()">
+        <span ion-text color="primary" showWhen="ios">Cancelar</span>
+        <ion-icon name="md-close" showWhen="android,windows"></ion-icon>
+      </button>
+        </ion-buttons>
+    </ion-toolbar>
+</ion-header>
+<ion-content padding>
+    <ion-list *ngIf="test">
+        <ion-item>
+            <ion-avatar item-start>
+                <img src="assets/img/exam.png">
+            </ion-avatar>
+        </ion-item>
+        <ion-item>
+            <ion-icon color="primary" name="checkmark" item-start></ion-icon>
+            <ion-note item-end>
+                {{test.correctAnswers}} correctas
+            </ion-note>
+        </ion-item>
+        <ion-item>
+            <ion-icon color="primary" name="close" item-start></ion-icon>
+            <ion-note item-end>
+                {{test.incorrectAnswers}} incorrectas
+            </ion-note>
+        </ion-item>
+        <ion-item>
+            <ion-icon color="primary" name="time" item-start></ion-icon>
+            <ion-note item-end>
+                {{test.timer}}
+            </ion-note>
+        </ion-item>
+        <ion-item>
+            <ion-icon color="primary" name="list" item-start></ion-icon>
+            <ion-note item-end>
+                Calificación:
+                <ion-badge item-end>{{grade}}</ion-badge>
+            </ion-note>
+        </ion-item>
+    </ion-list>
+    <ion-grid *ngIf="doughnutChartData.length!==0">
+        <ion-row>
+            <ion-col col-12>
+                <div style="display: block">
+                    <canvas baseChart [data]="doughnutChartData" [labels]="doughnutChartLabels" [chartType]="doughnutChartType" (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)"></canvas>
+                </div>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+
+</ion-content>
