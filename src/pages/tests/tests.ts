@@ -1,9 +1,8 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ViewController, LoadingController, AlertController, ToastController } from 'ionic-angular';
+import { NavController, NavParams, ViewController, LoadingController, AlertController, ToastController } from 'ionic-angular';
 import { ProvidersStudentProvider } from '../../providers/providers-student/providers-student';
 import { ChartPage } from '../chart/chart';
 
-@IonicPage()
 @Component({
   selector: 'page-tests',
   templateUrl: 'tests.html',

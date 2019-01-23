@@ -8,6 +8,8 @@ import { HomePage } from '../pages/home/home';
 import { ProvidersStorageProvider } from '../providers/providers-storage/providers-storage';
 import { MyInfoPage } from '../pages/my-info/my-info';
 import { TestsPage } from '../pages/tests/tests';
+import { TestPage } from '../pages/test/test';
+import { timer } from "rxjs/observable/timer";
 
 export interface MenuItem {
     title: string;
@@ -24,7 +26,7 @@ export class MyApp {
 
   rootPage: any = LoginPage;
   appMenuItems: Array<MenuItem>;
-
+  showSplash =  true;
   constructor(
     public platform: Platform,
     public statusBar: StatusBar,
@@ -33,7 +35,6 @@ export class MyApp {
     private menuCtrl:MenuController
   ) {
     this.initializeApp();
-
     this.appMenuItems = [
       {title: 'Home', component: HomePage, icon: 'home'},
       // {title: 'Local Weather', component: LocalWeatherPage, icon: 'partly-sunny'}
@@ -45,6 +46,7 @@ export class MyApp {
       this.statusBar.styleDefault();
       this.statusBar.overlaysWebView(false);
       this.splashScreen.hide();
+      timer(3000).subscribe(()=>this.showSplash = false);
     });
   }
   openPage(page) {
@@ -62,5 +64,9 @@ export class MyApp {
   testsDone(){
     this.menuCtrl.close();
     this.nav.push(TestsPage);
+  }
+  doTheTest(){
+    this.menuCtrl.close();
+    this.nav.push(TestPage);
   }
 }

@@ -1,0 +1,38 @@
+<ion-header>
+    <ion-toolbar color="cecytea-font">
+        <ion-buttons start>
+            <button ion-button clear>
+                {{hoursDisplay ? hoursDisplay : '00'}} : {{(minutesDisplay) && (minutesDisplay <= 59) ? minutesDisplay
+                    : '00' }} : {{(secondsDisplay) && (secondsDisplay <= 59) ? secondsDisplay : '00'}} </button>
+            <button ion-button (click)="dismiss()">
+                    <span ion-text color="white" showWhen="ios">Cancelar</span>
+                    <ion-icon name="close" showWhen="android,windows"></ion-icon>
+            </button>
+        </ion-buttons>
+    </ion-toolbar>
+</ion-header>
+
+
+
+<ion-content padding>
+    <ion-list>
+        <ion-item text-wrap text-justify *ngFor="let question of listQuestions;let i=index;">
+            <p color="dark">
+                {{i+1}}. {{question.questionDescription}}
+            </p>
+            <div *ngIf="question.imgs">
+                <ion-card *ngFor="let image of question.imgs">
+                    <img [src]="image" height="100">
+                </ion-card>
+            </div>
+            <ion-item>
+                <button primary ion-button block>
+                </button>
+                <ion-select (ionChange)="getAnswerByQuestion($event,i)">
+                    <ion-option *ngFor="let option of question.options;" [value]="option">{{option}}</ion-option>
+                </ion-select>
+            </ion-item>
+        </ion-item>
+    </ion-list>
+    <button (click)="sendAnswers()" ion-button block icon-start><ion-icon name="send"></ion-icon>Enviar respuestas</button>
+</ion-content>

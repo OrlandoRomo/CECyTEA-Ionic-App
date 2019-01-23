@@ -5,8 +5,7 @@ import { FormGroup, Validators, FormControl } from "@angular/forms";
 import { StudentLogin } from '../../interfaces/studentLogin';
 import { ProvidersAuthProvider } from '../../providers/providers-auth/providers-auth';
 import { HomePage } from '../home/home';
-import { ProvidersStorageProvider } from '../../providers/providers-storage/providers-storage';
-import {map} from 'rxjs/operators';
+import { ProvidersStorageProvider } from '../../providers/providers-storage/providers-storage'; 
 @Component({
   selector: 'page-login',
   templateUrl: 'login.html'
@@ -20,9 +19,14 @@ export class LoginPage {
     private _auth: ProvidersAuthProvider,
     private loadingCtrl: LoadingController,
     private _storage:ProvidersStorageProvider) {
-    //Build the student form method
+    this._storage.hasStorage().then((data)=>{
+      console.info(data);
+      if(data){
+        this.nav.setRoot(HomePage);
+      }
+    })
     this.buildStudentForm();
-
+    
   }
   buildStudentForm() {
     this.studentForm = new FormGroup({

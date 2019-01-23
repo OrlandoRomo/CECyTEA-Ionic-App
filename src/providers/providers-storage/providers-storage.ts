@@ -1,12 +1,15 @@
 import { Injectable } from '@angular/core';
 import { Storage } from '@ionic/storage';
-import { Student } from '../../interfaces/stundent';
-
 @Injectable()
 export class ProvidersStorageProvider {
 
   constructor(private storage: Storage) {
 
+  }
+  hasStorage(){
+    return this.storage.get('student').then((data)=>{
+      return !data ? false:true;
+    })
   }
   setTokenStorage(user: any) {
     this.storage.set('student', JSON.stringify(user));

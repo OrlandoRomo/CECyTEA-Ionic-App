@@ -18,11 +18,11 @@ import { LoginPage } from '../pages/login/login';
 import { MyInfoPage } from '../pages/my-info/my-info';
 import { TestsPage } from '../pages/tests/tests';
 import { ChartPage } from '../pages/chart/chart';
+import { TestPage } from '../pages/test/test';
 
 //Chart js 
 import {ChartsModule} from 'ng2-charts';
 //Services
-import { ServicesNetworkProvider } from '../providers/services-network/services-network';
 import { ProvidersAuthProvider } from '../providers/providers-auth/providers-auth';
 import { ProvidersStudentProvider } from '../providers/providers-student/providers-student';
 import { ProvidersStorageProvider } from '../providers/providers-storage/providers-storage';
@@ -34,7 +34,8 @@ import { ProvidersStorageProvider } from '../providers/providers-storage/provide
     HomePage,
     MyInfoPage,
     TestsPage,
-    ChartPage
+    ChartPage,
+    TestPage
   ],
   imports: [
     BrowserModule,
@@ -56,13 +57,13 @@ import { ProvidersStorageProvider } from '../providers/providers-storage/provide
     HomePage,
     MyInfoPage,
     TestsPage,
-    ChartPage
+    ChartPage,
+    TestPage
   ],
   providers: [
     StatusBar,
     SplashScreen,
     Network,
-    ServicesNetworkProvider,
     ProvidersAuthProvider,
     ProvidersStudentProvider,
     ProvidersStorageProvider,
